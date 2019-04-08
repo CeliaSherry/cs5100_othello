@@ -126,8 +126,8 @@ class OthelloGUI:
             if self._player_turn._player == BLACK:
                 self._next_move(self._agent_b.get_next_action(self._game_state))
 
-           # else:
-           #     self._next_move(self._agent_w.get_next_action(self._game_state))
+            #else:
+            #    self._next_move(self._agent_w.get_next_action(self._game_state))
 
             #self._root_window.after(STEP_DELAY, self._next_step)
 
@@ -217,7 +217,7 @@ class OthelloGUI:
 
 
 if __name__ == '__main__':
-    OthelloGUI(agent.RandomAgent(), agent.RandomAgent()).start()
+    OthelloGUI(agent.ExpectimaxAgent(), agent.RandomAgent()).start()
 
 
 
