@@ -21,8 +21,10 @@ class RandomAgent:
         row = next_move[0]
         col = next_move[1]
         self.move(row, col, board_state, board)
+        print(board_state.turn)
+        print(board)
 
-        #print(board)
+
 
         #turns = self.get_possible_moves(board_state)
         #opponentTurns = self.get_opponent_moves(board_state)
@@ -64,8 +66,8 @@ class RandomAgent:
 
         if next_turn != board_state.turn:
             board[row][col] = board_state.turn
-            if self.can_move(next_turn, board_state, board):
-                board_state.switch_turn()
+           # if self.can_move(next_turn, board_state, board):
+              #  board_state.switch_turn()
         else:
             raise InvalidMoveException()
 
@@ -141,14 +143,18 @@ class RandomAgent:
 
     def _convert_adjacent_cells_in_direction(self, row: int, col: int,
                                              rowdelta: int, coldelta: int, turn: str, board_state, board) -> None:
-        if self._is_valid_directional_move(row, col, rowdelta, coldelta, turn, board_state):
+        if self._is_valid_directional_move(row, col, rowdelta, coldelta, turn, board_state, board):
             current_row = row + rowdelta
             current_col = col + coldelta
 
             while self._cell_color(current_row, current_col, board_state, board) == board_state._opposite_turn(turn):
-                board_state._flip_cell(current_row, current_col)
+                self._flip_cell(current_row, current_col, board_state, board)
                 current_row += rowdelta
                 current_col += coldelta
+
+    def _flip_cell(self, row: int, col: int, board_state, board) -> None:
+        ''' Flips the specified cell over to the other color '''
+        board[row][col] = board_state._opposite_turn(board[row][col])
 
 # to get opposite turn: board_state._opposite_turn(board_state.turn)
 

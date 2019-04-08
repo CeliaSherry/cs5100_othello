@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/othello.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="295" column="9" lean-forward="true" selection-start-line="295" selection-start-column="9" selection-end-line="295" selection-end-column="9" />
+            <state relative-caret-position="148">
+              <caret line="274" column="17" selection-start-line="274" selection-start-column="17" selection-end-line="274" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+            <state relative-caret-position="1523">
+              <caret line="153" column="16" lean-forward="true" selection-start-line="153" selection-start-column="16" selection-end-line="153" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -65,9 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.switch_turn()</find>
-      <find>get_possib</find>
-      <find>switch_turn</find>
       <find>get_total_cells</find>
       <find>legal_ac</find>
       <find>_agent</find>
@@ -90,11 +87,14 @@
       <find>current_board</find>
       <find>board_state</find>
       <find>_cell_color</find>
-      <find>_convert</find>
       <find>_require_valid_empty_space_to_move</find>
       <find>_adjacent_opposite_color_directions</find>
       <find>_is_valid_directional_move</find>
       <find>_convert_adjacent_cells_in_direction</find>
+      <find>_is_valid_dire</find>
+      <find>board_state.turn</find>
+      <find>_convert</find>
+      <find>flip_cell</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -237,13 +237,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/othello.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="295" column="9" lean-forward="true" selection-start-line="295" selection-start-column="9" selection-end-line="295" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/othello_gui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -254,10 +247,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/othello.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="274" column="17" selection-start-line="274" selection-start-column="17" selection-end-line="274" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        <state relative-caret-position="1523">
+          <caret line="153" column="16" lean-forward="true" selection-start-line="153" selection-start-column="16" selection-end-line="153" selection-end-column="16" />
         </state>
       </provider>
     </entry>
