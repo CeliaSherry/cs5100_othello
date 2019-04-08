@@ -21,8 +21,13 @@ class RandomAgent:
         row = next_move[0]
         col = next_move[1]
         self.move(row, col, board_state, board)
+
+        whiteCells = self.get_total_cells(WHITE, board_state, board)
+        blackCells = self.get_total_cells(BLACK, board_state, board)
         print(board_state.turn)
         print(board)
+        print(whiteCells)
+        print(blackCells)
 
 
 
@@ -34,6 +39,15 @@ class RandomAgent:
         #print(opponentTurns)
         #print(board_state._opposite_turn(board_state.turn))
         return next_move
+
+    def get_total_cells(self, turn: str, board_state, board) -> int:
+        ''' Returns the total cell count of the specified colored player '''
+        total = 0
+        for row in range(board_state.rows):
+            for col in range(board_state.cols):
+                if board[row][col] == turn:
+                    total += 1
+        return total
 
     def copy_state(self, board_state):
         board = []
@@ -89,21 +103,21 @@ class RandomAgent:
         ''' In order to move, the specified cell space must be within board boundaries
             AND the cell has to be empty '''
 
-        if self._is_valid_cell(row, col) and self._cell_color(row, col, board_state, board) != NONE:
+        if self._is_valid_cell(row, col, board_state) and self._cell_color(row, col, board_state, board) != NONE:
             raise InvalidMoveException()
 
-    def _is_valid_cell(self, row: int, col: int) -> bool:
+    def _is_valid_cell(self, row: int, col: int, board_state) -> bool:
         ''' Returns True if the given cell move position is invalid due to
             position (out of bounds) '''
-        return self._is_valid_row_number(row) and self._is_valid_col_number(col)
+        return self._is_valid_row_number(row, board_state) and self._is_valid_col_number(col, board_state)
 
-    def _is_valid_row_number(self, row: int) -> bool:
+    def _is_valid_row_number(self, row: int, board_state) -> bool:
         ''' Returns True if the given row number is valid; False otherwise '''
-        return 0 <= row < DEFAULT_ROWS
+        return 0 <= row < board_state.rows
 
-    def _is_valid_col_number(self, col: int) -> bool:
+    def _is_valid_col_number(self, col: int, board_state) -> bool:
         ''' Returns True if the given col number is valid; False otherwise '''
-        return 0 <= col < DEFAULT_COLS
+        return 0 <= col < board_state.cols
 
 
     def _cell_color(self, row: int, col: int, board_state, board) -> str:
@@ -114,7 +128,7 @@ class RandomAgent:
         dir_list = []
         for rowdelta in range(-1, 2):
             for coldelta in range(-1, 2):
-                if self._is_valid_cell(row+rowdelta, col + coldelta):
+                if self._is_valid_cell(row+rowdelta, col + coldelta, board_state):
                     if board[row + rowdelta][col + coldelta] == board_state._opposite_turn(turn):
                         dir_list.append((rowdelta, coldelta))
         return dir_list
@@ -128,7 +142,7 @@ class RandomAgent:
         while True:
             # Immediately return false if the board reaches the end (b/c there's no blank
             # space for the cell to sandwich the other colored cell(s)
-            if not self._is_valid_cell(current_row, current_col):
+            if not self._is_valid_cell(current_row, current_col, board_state):
                 break
             if self._cell_color(current_row, current_col, board_state, board) == NONE:
                 break
