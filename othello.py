@@ -32,6 +32,7 @@ class OthelloGame:
         self.current_board = self._new_game_board(rows, cols, top_left)
         self.turn = turn
         self.victory_type = victory_type
+        self.possible_moves = []
 
 
     def _new_game_board(self, rows: int, cols: int, top_left: str) -> [[str]]:
@@ -51,6 +52,25 @@ class OthelloGame:
         board[rows // 2][cols // 2] = top_left
         
         return board
+
+
+    # def is_valid_move(self, row, column):
+    #     if self.current_board[row][column]
+
+
+    # def get_possible_moves(self):
+    #     moves = []
+    #     for row in range(self.rows):
+    #         for col in range(self.cols):
+    #             if self.is_valid_move(row, col):
+    #                 moves.append([row, col])
+    #
+    #     return moves
+
+
+    def get_possible_moves(self):
+        self.can_move(self.turn)
+        return self.possible_moves
 
 
     # This is the meat of the game logic. I define making a move through the
@@ -177,13 +197,17 @@ class OthelloGame:
         ''' Looks at all the empty cells in the board and checks to
             see if the specified player can move in any of the cells.
             Returns True if it can move; False otherwise. '''
+        can_move = False
+        new_possible_moves = []
         for row in range(self.rows):
             for col in range(self.cols):
                 if self.current_board[row][col] == NONE:
                     for direction in self._adjacent_opposite_color_directions(row, col, turn):
                         if self._is_valid_directional_move(row, col, direction[0], direction[1], turn):
-                            return True
-        return False
+                            new_possible_moves.append([row, col])
+                            can_move = True
+        self.possible_moves = new_possible_moves
+        return can_move
 
     def return_winner(self) -> str:
         ''' Returns the winner. ONLY to be called once the game is over.
