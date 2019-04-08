@@ -205,7 +205,7 @@ class ExpectimaxAgent:
             row = move[0]
             col = move[1]
             self.move(row, col, board_state, newBoard)
-            score = self.exp_value(newBoard, depth, board_state, 1)
+            score = self.exp_value(newBoard, depth, board_state)
             if score > max_score:
                 max_score = score
                 action = move
@@ -215,7 +215,7 @@ class ExpectimaxAgent:
         else:
             return max_score
 
-    def exp_value(self, board, depth, board_state, agent):
+    def exp_value(self, board, depth, board_state):
         if self.is_game_over(board_state, board):
             return self.get_total_cells(board_state.turn, board_state, board)
 
@@ -226,31 +226,32 @@ class ExpectimaxAgent:
         successors = 0
 
         for move in legalMoves:
-            if agent > 0:
-                newBoard = self.copy_board(board_state, board)
-                row = move[0]
-                col = move[1]
-                self.move(row, col, board_state, newBoard)
-                score = self.exp_value(newBoard, depth, board_state, next)
-        #     else:
-        #         # make new board to try out moves
-        #         newBoard = self.copy_board(board_state, board)
-        #         row = move[0]
-        #         col = move[1]
-        #         self.move(row, col, board_state, newBoard)
-        #         if (depth + 1) == DEPTH:
-        #             score = self.evaluationFunction(newBoard, board_state, move)
-        #         else:
-        #             score = self.max_value(board_state, depth + 1, newBoard)
-        #
-        #     v = v + score
-        #     successors = successors + 1
-        #
-        # return float(v) / float(successors)
-        return 1
+            newBoard = self.copy_board(board_state, board)
+            row = move[0]
+            col = move[1]
+            self.move_opponent(row, col, board_state, newBoard)
+            score = self.evaluationFunction(newBoard, board_state, move)
+
+
+            # score = self.exp_value(newBoard, depth, board_state, next)
+            # else:
+            #     # make new board to try out moves
+            #     newBoard = self.copy_board(board_state, board)
+            #     row = move[0]
+            #     col = move[1]
+            #     self.move(row, col, board_state, newBoard)
+            #     if (depth + 1) == DEPTH:
+            #         score = self.evaluationFunction(newBoard, board_state, move)
+            #     else:
+            #         score = self.max_value(board_state, depth + 1, newBoard)
+            v = v + score
+
+
+        return float(v) / float(len(legalMoves))
+        #return 1
 
     def evaluationFunction(self, board, board_state, move):
-        return self.get_total_cells(board_state.turn, board)
+        return self.get_total_cells(board_state.turn, board_state, board)
         # Corner
         #if (move[0] == 0 or move[0] == 1) and (move[1] == 0 or move[1] == 1):
         #    return 100
@@ -313,6 +314,24 @@ class ExpectimaxAgent:
         else:
             raise InvalidMoveException()
 
+    def move_opponent(self, row: int, col: int, board_state, board) -> None:
+        self._require_valid_empty_space_to_move(row, col, board_state, board)
+        possible_directions = self._adjacent_opposite_color_directions(row, col, board_state._opposite_turn(board_state.turn), board_state, board)
+
+        next_turn = board_state.turn
+        for direction in possible_directions:
+            if self._is_valid_directional_move(row, col, direction[0], direction[1], board_state._opposite_turn(board_state.turn), board_state,
+                                               board):
+                next_turn = board_state.turn
+            self._convert_adjacent_cells_in_direction(row, col, direction[0], direction[1], board_state._opposite_turn(board_state.turn),
+                                                      board_state, board)
+
+        if next_turn != board_state._opposite_turn(board_state.turn):
+            board[row][col] = board_state._opposite_turn(board_state.turn)
+        #  if self.can_move(next_turn, board_state, board):
+        #      board_state.switch_turn()
+        else:
+            raise InvalidMoveException()
 
     def can_move(self, turn: str, board_state, board) -> bool:
         can_move = False
