@@ -90,6 +90,56 @@ class ExpectimaxAgent:
         #if (move[0] == 0 or move[0] == 1) and (move[1] == 0 or move[1] == 1):
         #    return 100
 
+    def betterEvaluationFunction(self, board, board_state, move):
+        blackPieces = self.get_total_cells(board_state.turn, board_state, board)
+        whitePices = self.get_total_cells(board_state._opposite_turn(board_state.turn), board_state, board)
+        blackMoves = len(self.get_possible_moves(board_state,board))
+        whiteMoves = len(self.get_opponent_moves(board_state, board))
+
+        # Number of pieces on board
+        p = 0
+        if blackPieces > whitePices:
+            p = 100*(float(blackPieces)/float(blackPieces+whitePices))
+        if whitePices > blackPieces:
+            p = -100*(float(whitePices)/float(blackPieces+whitePices))
+
+        # Number of moves
+        m = 0
+        if blackMoves > whiteMoves:
+            m = 100*(float(blackMoves)/float(blackMoves+whiteMoves))
+        if whiteMoves > blackMoves:
+            m = -100 * (float(whiteMoves) / float(blackMoves + whiteMoves))
+
+
+        # Corner occupancy
+        blackCorner = 0
+        whiteCorner = 0
+        if board[0][0] == board_state.turn:
+            blackCorner = blackCorner + 1
+        if board[0][0] == board_state._opposite_turn(board_state.turn):
+            whiteCorner = whiteCorner + 1
+
+        if board[0][DEFAULT_COLS-1] == board_state.turn:
+            blackCorner = blackCorner + 1
+        if board[0][DEFAULT_COLS-1] == board_state._opposite_turn(board_state.turn):
+            whiteCorner = whiteCorner + 1
+
+        if board[DEFAULT_ROWS-1][0] == board_state.turn:
+            blackCorner = blackCorner + 1
+        if board[DEFAULT_ROWS-1][0] == board_state._opposite_turn(board_state.turn):
+            whiteCorner = whiteCorner + 1
+
+        if board[DEFAULT_ROWS-1][DEFAULT_COLS-1] == board_state.turn:
+            blackCorner = blackCorner + 1
+        if board[DEFAULT_ROWS-1][DEFAULT_COLS-1] == board_state._opposite_turn(board_state.turn):
+            whiteCorner = whiteCorner + 1
+
+        c = (25*blackCorner) - (25*whiteCorner)
+
+        return p + m + c
+
+
+
 
     def get_total_cells(self, turn: str, board_state, board) -> int:
         total = 0
