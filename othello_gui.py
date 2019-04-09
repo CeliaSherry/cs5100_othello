@@ -228,7 +228,7 @@ class OthelloGUI:
 if __name__ == '__main__':
     black_wins = 0
     white_wins = 0
-    for i in range(10):
+    for i in range(20):
         gui = OthelloGUI(agent.AlphaBetaAgent(), agent.RandomAgent())
         gui.start()
         winner = gui.findWinner()

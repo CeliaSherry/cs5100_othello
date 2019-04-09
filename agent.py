@@ -34,6 +34,10 @@ class AlphaBetaAgent:
 
         legalMoves = self.get_possible_moves(board_state, board)
 
+        if len(legalMoves) > 0:
+            action = legalMoves[0]
+
+
         for move in legalMoves:
             newBoard = self.copy_board(board_state, board)
             row = move[0]
@@ -48,7 +52,6 @@ class AlphaBetaAgent:
                 return max_score
 
         if depth == 0:
-            #print(legalMoves)
             return action
         else:
             return max_score
@@ -317,6 +320,8 @@ class ExpectimaxAgent:
         max_score = float("-inf")
 
         legalMoves = self.get_possible_moves(board_state,board)
+        if len(legalMoves) > 0:
+            action = legalMoves[0]
 
         for move in legalMoves:
             newBoard = self.copy_board(board_state, board)
@@ -329,7 +334,6 @@ class ExpectimaxAgent:
                 action = move
 
         if depth == 0:
-            print(legalMoves)
             return action
         else:
             return max_score
