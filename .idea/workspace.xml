@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f4c71abc-0938-45cd-a492-34123539cc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/othello_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/othello_gui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/othello_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
+            <state relative-caret-position="156">
+              <caret line="124" column="32" selection-start-line="124" selection-start-column="32" selection-end-line="124" selection-end-column="32" />
               <folding>
                 <element signature="e#69#83#0" expanded="true" />
               </folding>
@@ -36,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="259" column="45" lean-forward="true" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
+            <state relative-caret-position="-200">
+              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -65,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_agent</find>
       <find>get_possible</find>
       <find>possible</find>
       <find>current</find>
@@ -94,6 +94,7 @@
       <find>redraw</find>
       <find>get_total_cells</find>
       <find>board_state.rows</find>
+      <find>print</find>
       <find>othellogame</find>
     </findStrings>
   </component>
@@ -246,8 +247,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/othello_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
+        <state relative-caret-position="156">
+          <caret line="124" column="32" selection-start-line="124" selection-start-column="32" selection-end-line="124" selection-end-column="32" />
           <folding>
             <element signature="e#69#83#0" expanded="true" />
           </folding>
@@ -256,8 +257,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="259" column="45" lean-forward="true" selection-start-line="259" selection-start-column="45" selection-end-line="259" selection-end-column="45" />
+        <state relative-caret-position="-200">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
         </state>
       </provider>
     </entry>

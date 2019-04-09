@@ -126,10 +126,10 @@ class OthelloGUI:
             if self._player_turn._player == BLACK:
                 self._next_move(self._agent_b.get_next_action(self._game_state))
 
-            #else:
-            #    self._next_move(self._agent_w.get_next_action(self._game_state))
+            else:
+                self._next_move(self._agent_w.get_next_action(self._game_state))
 
-            #self._root_window.after(STEP_DELAY, self._next_step)
+            self._root_window.after(STEP_DELAY, self._next_step)
 
     def _configure_game_settings(self) -> None:
         ''' Pops out an options window to configure the game settings '''
