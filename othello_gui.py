@@ -217,7 +217,7 @@ class OthelloGUI:
 
 
 if __name__ == '__main__':
-    OthelloGUI(agent.ExpectimaxAgent(), agent.RandomAgent()).start()
+    OthelloGUI(agent.AlphaBetaAgent(), agent.RandomAgent()).start()
 
 
 
