@@ -7,7 +7,7 @@ MOST_CELLS = 'M'
 LEAST_CELLS = 'L'
 DEFAULT_ROWS = 8
 DEFAULT_COLS = 8
-DEPTH = 1
+DEPTH = 3
 
 class RandomAgent:
 
@@ -205,7 +205,7 @@ class ExpectimaxAgent:
             row = move[0]
             col = move[1]
             self.move(row, col, board_state, newBoard)
-            score = self.exp_value(newBoard, depth, board_state)
+            score = self.exp_value(newBoard, depth, board_state, 1)
             if score > max_score:
                 max_score = score
                 action = move
@@ -215,7 +215,7 @@ class ExpectimaxAgent:
         else:
             return max_score
 
-    def exp_value(self, board, depth, board_state):
+    def exp_value(self, board, depth, board_state, agent):
         if self.is_game_over(board_state, board):
             return self.get_total_cells(board_state.turn, board_state, board)
 
@@ -226,11 +226,29 @@ class ExpectimaxAgent:
         successors = 0
 
         for move in legalMoves:
-            newBoard = self.copy_board(board_state, board)
-            row = move[0]
-            col = move[1]
-            self.move_opponent(row, col, board_state, newBoard)
-            score = self.evaluationFunction(newBoard, board_state, move)
+            if next > 0:
+                newBoard = self.copy_board(board_state, board)
+                row = move[0]
+                col = move[1]
+                self.move_opponent(row, col, board_state, newBoard)
+                score = self.exp_value(newBoard, depth, board_state, next)
+            else:
+                newBoard = self.copy_board(board_state, board)
+                row = move[0]
+                col = move[1]
+                self.move_opponent(row, col, board_state, newBoard)
+                if (depth+1) == DEPTH:
+                    score = self.evaluationFunction(newBoard, board_state, move)
+                else:
+                    score = self.max_value(board_state, depth+1, newBoard)
+
+
+
+            # newBoard = self.copy_board(board_state, board)
+            # row = move[0]
+            # col = move[1]
+            # self.move_opponent(row, col, board_state, newBoard)
+            # score = self.evaluationFunction(newBoard, board_state, move)
 
 
             # score = self.exp_value(newBoard, depth, board_state, next)
