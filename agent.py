@@ -23,7 +23,8 @@ class AlphaBetaAgent:
     def __init__(self):
         self.possible_moves = []
 
-    def getAction(self, board_state):
+    def get_next_action(self, board_state):
+        board = self.copy_state(board_state)
         return self.max_value(board_state, board, 0, float("-inf"), float("inf"))
 
     def max_value(self, board_state, board, depth, alpha, beta):
@@ -47,6 +48,7 @@ class AlphaBetaAgent:
                 return max_score
 
         if depth == 0:
+            #print(legalMoves)
             return action
         else:
             return max_score
