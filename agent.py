@@ -329,6 +329,7 @@ class ExpectimaxAgent:
                 action = move
 
         if depth == 0:
+            print(legalMoves)
             return action
         else:
             return max_score

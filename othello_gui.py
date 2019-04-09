@@ -37,6 +37,7 @@ GAME_WIDTH = 300
 BLACK = 'B'
 WHITE = 'W'
 
+
 class OthelloGUI:
     def __init__(self, agent_b, agent_w):
         # AI agents
@@ -175,10 +176,18 @@ class OthelloGUI:
 
             if self._game_state.is_game_over():
                 self._player_turn.display_winner(self._game_state.return_winner())
+                WINNER = self._game_state.return_winner()
+                self._root_window.destroy()
             else:
                 self._player_turn.switch_turn(self._game_state)
         except:
             pass
+
+    def findWinner(self):
+        return self._game_state.return_winner()
+
+    def quit(self):
+        self._root_window.destroy()
 
     # def _on_board_clicked(self, event: tkinter.Event) -> None:
     #     ''' Attempt to play a move on the board if it's valid '''
@@ -217,7 +226,10 @@ class OthelloGUI:
 
 
 if __name__ == '__main__':
-    OthelloGUI(agent.AlphaBetaAgent(), agent.RandomAgent()).start()
+    for i in range(2):
+        gui = OthelloGUI(agent.AlphaBetaAgent(), agent.RandomAgent())
+        gui.start()
+        print(gui.findWinner())
 
 
 
